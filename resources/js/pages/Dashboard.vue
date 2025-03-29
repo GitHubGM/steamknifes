@@ -39,14 +39,16 @@ const breadcrumbs: BreadcrumbItem[] = [
                         v-if="product.image_url"
                         :src="product.image_url"
                         alt="Product image"
-                        class="mb-2 h-32 w-full object-cover"
+                        class="mb-2 h-32 w-32 object-cover"
                     />
                     <h3 class="font-semibold">{{ product.name }}</h3>
                     <p class="text-sm text-gray-500 dark:text-gray-400">
                         ${{ product.price }}
                     </p>
+                    <a :href="route('admin.products.show', product.id)">View details</a>
                 </div>
             </div>
         </div>
     </AppLayout>
 </template>
+
