@@ -1,7 +1,8 @@
 <template>
-    <div>
+    <AppLayout>
+    <div class="ml-2">
         <h1>Create New Product</h1>
-
+        <a href="/dashboard">Return to main page</a>
         <form @submit.prevent="submitForm">
             <div>
                 <label>Name</label>
@@ -29,16 +30,18 @@
             <button type="submit">Save</button>
         </form>
     </div>
+    </AppLayout>
 </template>
 
 <script>
 import { Inertia } from '@inertiajs/inertia'
 import { useForm } from '@inertiajs/vue3'
+import AppLayout from '@/layouts/AppLayout.vue';
 
 export default {
     name: 'AdminProductsCreate',
+    components: { AppLayout },
     setup() {
-        // Create an Inertia form helper
         const form = useForm({
             name: '',
             description: '',

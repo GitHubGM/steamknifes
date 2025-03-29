@@ -1,4 +1,5 @@
 <template>
+    <AppLayout :breadcrumbs="breadcrumbs">
     <div>
         <h1>Admin: Products</h1>
 
@@ -29,10 +30,12 @@
             </tbody>
         </table>
     </div>
+    </AppLayout>
 </template>
 
 <script>
 import { Link} from '@inertiajs/vue3'
+import AppLayout from '@/layouts/AppLayout.vue';
 import {Inertia} from '@inertiajs/inertia'
 export default {
     name: 'AdminProductsIndex',

@@ -1,4 +1,5 @@
 <template>
+    <AppLayout>
     <div>
         <h1>All Products</h1>
         <div v-for="product in products" :key="product.id">
@@ -8,14 +9,16 @@
             </Link>
         </div>
     </div>
+    </AppLayout>
 </template>
 
 <script>
 import { Link, usePage } from '@inertiajs/vue3';
+import AppLayout from '@/layouts/AppLayout.vue';
 
 export default {
     name: 'IndexPage',
-    components: { Link },
+    components: { AppLayout, Link },
     props: {
         products: {
             type: Array,
