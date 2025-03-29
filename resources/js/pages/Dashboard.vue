@@ -4,6 +4,17 @@ import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
 import PlaceholderPattern from '../components/PlaceholderPattern.vue';
 
+const props = defineProps<{
+    products: Array<{
+        id: number
+        name: string
+        price: number
+        image?: string
+        image_url?: string
+    }>
+}>()
+
+
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Dashboard',
@@ -18,18 +29,23 @@ const breadcrumbs: BreadcrumbItem[] = [
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
             <div class="grid auto-rows-min gap-4 md:grid-cols-3">
-                <div class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-                    <PlaceholderPattern />
+                <div
+                    v-for="product in products"
+                    :key="product.id"
+                    class="relative rounded-xl border border-sidebar-border/70 dark:border-sidebar-border p-4"
+                >
+                    <!-- If you have an image_url accessor: -->
+                    <img
+                        v-if="product.image_url"
+                        :src="product.image_url"
+                        alt="Product image"
+                        class="mb-2 h-32 w-full object-cover"
+                    />
+                    <h3 class="font-semibold">{{ product.name }}</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                        ${{ product.price }}
+                    </p>
                 </div>
-                <div class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-                    <PlaceholderPattern />
-                </div>
-                <div class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-                    <PlaceholderPattern />
-                </div>
-            </div>
-            <div class="relative min-h-[100vh] flex-1 rounded-xl border border-sidebar-border/70 dark:border-sidebar-border md:min-h-min">
-                <PlaceholderPattern />
             </div>
         </div>
     </AppLayout>
